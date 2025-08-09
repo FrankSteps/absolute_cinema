@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compilar C++ com SFML",
+      "type": "shell",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-g",
+        "${workspaceFolder}/absolute.cpp",
+        "-o", "${workspaceFolder}/absolute",
+        "-I/usr/local/include",  // Caminho para os cabeçalhos da SFML
+        "-L/usr/local/lib",      // Caminho para as bibliotecas da SFML
+        "-lsfml-graphics",
+        "-lsfml-window",
+        "-lsfml-system",
+        "-lpthread"             // Adicionando a biblioteca pthread
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "detail": "Compilando o código C++ com SFML"
+    }
+  ]
+}
