@@ -13,16 +13,12 @@
 #include <chrono>
 #include <thread>
 
-//declaração das namespaces utilizadas por algumas das bibliotecas
-using namespace std;
-using namespace sf;
-
 //declaração da variável alpha
 int alpha = 0; 
 
 //função de delay - com o uso semelhante ao c++ do arduino
 void delay(int valor){
-    this_thread::sleep_for(chrono::milliseconds(valor)); 
+    std::this_thread::sleep_for(std::chrono::milliseconds(valor)); 
 }
 
 //função responsável por alterar o valor de alpha unitariamente de 0 para 255
@@ -36,23 +32,23 @@ void contador(){
 
 int main() {
     //algumas configurações de exibição da janela
-    RenderWindow window(VideoMode(1024, 868), "Absolute cinema");
+    sf::RenderWindow window(sf::VideoMode(1024, 868), "Absolute cinema");
 
     //Responsável por "puxar" a imagem para o código
-    Texture texture;
+    sf::Texture texture;
     if (!texture.loadFromFile("images_a/cinema.jpeg")) {
         return -1; //fecha o programa automaticamente caso a imagem não seja encontrada ou esteja corrompida
     }
-    Sprite sprite(texture);
+    sf::Sprite sprite(texture);
 
     //configurações de interação com a janela
-    thread fadeThread(contador); 
+    std::thread fadeThread(contador); 
     while (window.isOpen()) {
-        sprite.setColor(Color(255, 255, 255, alpha));
+        sprite.setColor(sf::Color(255, 255, 255, alpha));
 
-        Event event;
+        sf::Event event;
         while (window.pollEvent(event)) {
-            if (event.type == Event::Closed) {
+            if (event.type == sf::Event::Closed) {
                 window.close();
             }
         }
