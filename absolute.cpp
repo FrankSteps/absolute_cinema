@@ -32,7 +32,7 @@ void contador(){
 
 int main() {
     //algumas configurações de exibição da janela
-    sf::RenderWindow window(sf::VideoMode(1024, 868), "Absolute cinema");
+    sf::RenderWindow window(sf::VideoMode(1024, 868), "Absolute cinema", sf::Style::Default);
 
     //Responsável por "puxar" a imagem para o código
     sf::Texture texture;
